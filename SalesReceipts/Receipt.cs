@@ -25,7 +25,7 @@ namespace SalesReceipts
             SaleDate = DateTime.Now;
             SalesTaxPercent = .089;
             CogPrice = 79.99;
-            GearPrice = 250.00;
+            GearPrice = 250.00; //save 1
         }
     }
 }
