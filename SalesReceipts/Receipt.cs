@@ -61,7 +61,24 @@ namespace SalesReceipts
 
         private double CalculateNetAmount()
         {
-            double netAmount, cogPriceWMarkup, gearPriceWMarkup,
+            double netAmount, cogPriceWMarkup, gearPriceWMarkup;
+
+             
+
+            if (CogQuantity + GearQuantity > 16 || CogQuantity > 10 || GearQuantity > 10)
+            {
+                cogPriceWMarkup = CogPrice + CogPrice*.125;
+                gearPriceWMarkup = GearPrice + GearPrice * .125;
+            }
+            else
+            {
+                cogPriceWMarkup = CogPrice + CogPrice * .15;
+                gearPriceWMarkup = GearPrice + GearPrice * .15;
+            }
+
+            netAmount = CogQuantity * cogPriceWMarkup + GearQuantity * gearPriceWMarkup;
+
+            return netAmount;
         }
 
 
