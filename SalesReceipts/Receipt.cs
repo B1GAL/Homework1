@@ -51,7 +51,19 @@ namespace SalesReceipts
 
         public void PrintReceipt()
         {
-             //string receipt = $"Customer: 5" + 
+            string receipt = $"\t{string.Empty.PadLeft(40, '#')}\n" +
+                             $"\t{"".PadLeft(05, ' ') + "Customer:"} {CustomerID}\n" +
+                             $"\t{string.Empty.PadLeft(40, '-')}\n" +
+                             $"\t{"# of Cogs:".PadRight(15, ' ')}{CogQuantity.ToString("N0")}" +
+                             $"\t{"# of Gears:"} + {GearQuantity.ToString("N0")}" +
+                             $"\t{"Subtotal:"}{CalculateNetAmount().ToString("C")}" +
+                             $"\t{"Sales Tax:"}{CalculateTaxAmount().ToString("C")}" +
+                             $"\t{"Total:"}{CalculateTotal().ToString("C")}" +
+                             $"\t{string.Empty.PadLeft(40, '#')}";
+
+
+
+
         }
 
         private double CalculateTaxAmount()

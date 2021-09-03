@@ -14,31 +14,36 @@ namespace SalesReceipts
 
             do
             {
-                int ID = ConfirmIntInput("Invalid answer, pls enter a valid value");
-                Console.WriteLine("Enter the number of cogs");
-                reply = Console.ReadLine();
-                int cogs;
+                int ID = ConfirmIntInput("Enter customer's ID", "Invalid answer, pls enter a valid value");
+                int cogs = ConfirmIntInput("Enter # of cogs", "Invalid answer, pls enter a valid value");
+                int gears = ConfirmIntInput("Enter # of gears", "Invalid answer, pls enter a valid value");
 
-                Console.WriteLine("Enter the number of gears");
-                reply = Console.ReadLine();
-                int gears;
+                Receipt receipt = new Receipt(ID, cogs, gears);
 
-                Console.WriteLine("Enter the customer ID");
-                reply = Console.ReadLine();
-                
-
+                if (receipts.ContainsKey(ID))
+                {
+                    receipts[ID].Add(receipt);
+                }
+                else
+                {
+                    receipts.Add(ID, new List<Receipt>());
+                }
                 Console.WriteLine("Do you want to input another receipt? Yeah/Nah");
                 reply = Console.ReadLine();
 
             } while (reply == "Yeah");
             
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="firstMsg"></param>
-        /// <param name="reMsg"></param>
-        /// <returns></returns>
+        private static void DisplayOptions()
+        {
+            Console.WriteLine("".PadRight(15, '#')); //();
+            Console.WriteLine("\tOptions");
+            Console.WriteLine("1.) By customer ID");
+            Console.WriteLine("2.) All of today's receipts");
+            Console.WriteLine("3.) Receipt with highest total");
+            Console.WriteLine("".PadRight(15, '#'));
+            
+        }
         private static int ConfirmIntInput(string firstMsg, string reMsg)
         {
             int value;
